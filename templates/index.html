@@ -1,0 +1,62 @@
+<html>
+
+  <head>
+    <title>BentoBox</title>
+    <meta content="">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+
+  <body>
+    <div class="columns is-mobile is-centered">
+      <div class="content column is-half">
+        <h1>BentoBox</h1>
+        <form id="form" action="/create-jar/" method="get">
+            <h3>Select a skyblock gamemode</h3>
+            <label class="column is-one-third radio">
+              {% for item in essentials %}
+                <label class="checkbox">
+                  <input onclick="selectedGameMode()" type="radio" name="gamemode" value="{{ item }}">
+                  {{ item.split("-")[1] | title}}
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                </label>
+                <br>
+              {% endfor %}
+            </label>
+            <h3>Which addons would you like to use?</h3>
+            <div class="addons column is-one-third">
+              {% for item in addons %}
+                <label class="checkbox">
+                  <input name="{{ item }}" type="checkbox">
+                  {{ item.split("-")[1] | title}}
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                </label>
+                <br>
+              {% endfor %}
+              <br>
+            </div>
+            <div class="control">
+              <button id="submit-button" class="button is-link is-left" disabled>Submit</button>
+            </div>
+            <a href="https://github.com/BentoBoxWorld" class="button is-right">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>GitHub</span>
+            </a>
+          </form>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Bentobox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Website made by <a href="https://github.com/mastercake10">MasterCake</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
