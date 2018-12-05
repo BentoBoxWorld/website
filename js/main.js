@@ -1,4 +1,4 @@
-var URL_MODULES = "http://cors.io/?u=https://ci.codemc.org/job/BentoBoxWorld/api/json"
+var URL_MODULES = "https://cors.io/?u=https://ci.codemc.org/job/BentoBoxWorld/api/json"
 
 //var addons = 
 
