@@ -1,9 +1,9 @@
-var URL_MODULES = "https://ci.codemc.org/job/BentoBoxWorld/api/json"
+var URL_MODULES = "http://cors.io/?u=https://ci.codemc.org/job/BentoBoxWorld/api/json"
 
 //var addons = 
 
 function buildForm(){
-  fetch(URL_MODULES, {'mode': 'no-cors'})
+  fetch(URL_MODULES)
   .then(res => res.json())
   .then((out) => {
     console.log('Checkout this JSON! ', out);
