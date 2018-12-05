@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import requests
-from flask import jsonify
+from flask import jsonify, make_response
 from flask import request, send_file
 import urllib3, zipfile, hashlib, os, time
 
@@ -35,7 +35,9 @@ def create_jar():
     buildZip(addons)
 
   print(zipPath)
-  return send_file(zipPath, attachment_filename='BentoBox.zip', as_attachment=True)
+  resp = make_response(send_file(zipPath, attachment_filename='BentoBox.zip', as_attachment=True))
+  resp.set_cookie('downloaded', '1')
+  return resp
 
 def getDownloadLinks(modules):
   links = []
