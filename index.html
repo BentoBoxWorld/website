@@ -1,0 +1,92 @@
+<html>
+
+  <head>
+    <title>BentoBox</title>
+    <meta content="">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="js/jszip.min.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+    <script>
+      buildForm();  
+    </script>
+    <div class="columns is-mobile is-centered">
+      <div class="content column is-half">
+        <h1>BentoBox</h1>
+        <form id="form">
+            <h3>Select a skyblock gamemode</h3>
+            <label class="column is-one-third radio">
+                <input type="radio" name="gamemode">
+                BSkyBlock
+                <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/bentobox.svg">
+              </label>
+              <br>
+              <label class="column is-one-third radio">
+                <input type="radio" name="gamemode">
+                AcidIsland
+                <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-acidisland.svg">
+            </label>
+            <h3>Which addons would you like to use?</h3>
+            <div class="addons column is-one-third">
+              <label class="checkbox">
+                  <input name="addon-levels" type="checkbox">
+                  Levels
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-level.svg">
+              </label>
+              <br>
+              <label class="checkbox">
+                  <input name="addon-challenges" type="checkbox">
+                  Challenges
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-challenges.svg">
+              </label>
+              <br>
+              <label class="checkbox">
+                  <input name="addon-welcomewarpsigns" type="checkbox">
+                  WelcomeWarpSigns
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-welcomewarpsigns.svg">
+              </label>
+              <br>
+              <label class="checkbox">
+                  <input name="addon-limits" type="checkbox">
+                  Limits
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-limits.svg">
+              </label>
+              <br>
+              <label class="checkbox">
+                  <input name="addon-invswitcher" type="checkbox">
+                  InvSwitcher
+                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/addon-invSwitcher.svg">
+              </label>
+              <br>
+              <br>
+            </div>
+            <a class="button is-success" onclick="createJar()">
+                <span class="icon is-small">
+                  <i class="fas fa-check"></i>
+                </span>
+                <span>Create Jar</span>
+              </a>
+            <a class="button is-right">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>GitHub</span>
+            </a>
+          </form>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Bentobox</strong> by <a href="https://jgthms.com">tastybento</a> and <a href="https://jgthms.com">poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
