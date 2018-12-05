@@ -7,6 +7,7 @@ import urllib3, zipfile, hashlib, os, time
 
 app = Flask(__name__)
 
+# some links for jenkins
 URL_MODULES = "https://ci.codemc.org/job/BentoBoxWorld/api/json"
 URL_GET_MODULE = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/api/json"
 URL_ARTIFACT = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/artifact/target/{filename}"
@@ -43,6 +44,7 @@ def getDownloadLinks(modules):
   return links
 
 def getDownloadLink(module):
+    print(URL_GET_MODULE.format(module=module))
     result = requests.get(URL_GET_MODULE.format(module=module)).json()
     fileName = result["artifacts"][-1]["fileName"]
     return [fileName, URL_ARTIFACT.format(module=module, filename=fileName)]
@@ -80,6 +82,6 @@ def get_addons():
   obj = r.json()
   addon_names = []
   for job in obj["jobs"]:
-    if job["name"].startswith("addon"):
+    if job["name"].startswith("addon") and job["color"] != "red":
       addon_names.append(job["name"])
   return addon_names
