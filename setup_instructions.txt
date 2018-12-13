@@ -1,0 +1,4 @@
+Thanks for downloading Bentobox!
+
+Just drop the BentoBox folder and the bentobox-x.xx.x-SNAPSHOT.jar to your plugin folder!
+Remember that the BentoBox folder contains all the addons you've just downloaded.
