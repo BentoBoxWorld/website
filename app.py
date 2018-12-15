@@ -17,24 +17,18 @@ CACHE_FILE_SECONDS = 60*5
 @app.route('/')
 def index():
   addon_names = get_addons()
-  return render_template('index.html', essentials=addon_names[:2], addons=addon_names[2:])
+  return render_template('index.html', addons=addon_names)
 
 @app.route('/create-jar/')
 def create_jar():
-  addons = []
-  addons.append(request.args.get('gamemode', None))
-
-  for arg in request.args:
-    if arg != "gamemode":
-      addons.append(arg)
-
+  addons = list(map(lambda e: e, request.args))
+  
   # check if the zip is cached for this addons
   zipPath = getZipFilePath(addons)
 
   if not os.path.exists(zipPath) or time.time() - os.stat(zipPath).st_mtime > CACHE_FILE_SECONDS:
     buildZip(addons)
-
-  print(zipPath)
+    
   resp = make_response(send_file(zipPath, attachment_filename='BentoBox.zip', as_attachment=True))
   resp.set_cookie('downloaded', '1')
   return resp

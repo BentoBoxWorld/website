@@ -11,44 +11,52 @@
   <body>
     <div class="columns is-mobile is-centered">
       <div class="content column is-half">
-        <h1>BentoBox</h1>
-        <form id="form" action="/create-jar/" method="get">
-            <h3>Select a skyblock gamemode</h3>
-            <label class="column is-one-third radio">
-              {% for item in essentials %}
-                <label class="checkbox">
-                  <input onclick="selectedGameMode()" type="radio" name="gamemode" value="{{ item }}">
-                  {{ item.split("-")[1] | title}}
-                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+        <div class="columns">
+          <div class="column">
+            <h1>BentoBox</h1>
+            <form id="form" action="/create-jar/" method="get">
+                <h3>Select a skyblock gamemode</h3>
+                <label class="column is-one-third radio">
+                  {% for item in addons[:2] %}
+                    <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
+                      <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item }}">
+                      {{ item.split("-")[1] | title}}
+                      <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                    </label>
+                    <br>
+                  {% endfor %}
                 </label>
-                <br>
-              {% endfor %}
-            </label>
-            <h3>Which addons would you like to use?</h3>
-            <div class="addons column is-one-third">
-              {% for item in addons %}
-                <label class="checkbox">
-                  <input name="{{ item }}" type="checkbox">
-                  {{ item.split("-")[1] | title}}
-                  <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
-                </label>
-                <br>
-              {% endfor %}
-              <br>
+                <h3>Which addons would you like to use?</h3>
+                <div class="addons column is-one-third">
+                  {% for item in addons[2:] %}
+                    <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
+                      <input name="{{ item }}" type="checkbox">
+                      {{ item.split("-")[1] | title}}
+                      <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                    </label>
+                    <br>
+                  {% endfor %}
+                  <br>
+                </div>
+                <div class="control">
+                  <button id="submit-button" onclick="playLoadingAnimation()" class="button is-link is-left" disabled>Download</button>
+                  <a id="githubButton" href="https://github.com/BentoBoxWorld" class="button is-right">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </form>
             </div>
-            <div class="control">
-              <button id="submit-button" onclick="playLoadingAnimation()" class="button is-link is-left" disabled>Download</button>
+            <div class="column content">
+              <h2 id="textboxTitle">Select your addons!</h2>
+              <div id="textbox"></div>
             </div>
-            <a href="https://github.com/BentoBoxWorld" class="button is-right">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
-                <span>GitHub</span>
-            </a>
-          </form>
+        </div>
       </div>
     </div>
-
+    
     <footer class="foot">
       <div class="content has-text-centered">
         <p>

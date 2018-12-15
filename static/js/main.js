@@ -1,5 +1,12 @@
 function selectedGameMode(){
-    document.getElementById("submit-button").removeAttribute('disabled');
+    elements = document.querySelectorAll("input");
+    
+    if (elements[0].checked || elements[1].checked){
+        document.getElementById("submit-button").removeAttribute('disabled');
+    }else{
+        document.getElementById("submit-button").setAttribute('disabled', true);
+    }
+
 }
 
 function playLoadingAnimation(){
@@ -11,4 +18,12 @@ function playLoadingAnimation(){
             document.getElementById("submit-button").classList.remove("is-loading");
         }
       }, 100);
+}
+
+var textBox = document.getElementById("textbox");
+var textBoxTitle = document.getElementById("textboxTitle");
+
+function showDescription(labelEle){
+    textBoxTitle.innerHTML = labelEle.getAttribute("data-title");
+    textBox.innerHTML = labelEle.getAttribute("data-desc");
 }
