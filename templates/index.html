@@ -16,6 +16,7 @@
             <h1>BentoBox</h1>
             <form id="form" action="/create-jar/" method="get">
                 <h3>Select Gamemodes</h3>
+				<span>Gamemodes bring in original games to your server.</span>
                 <label class="column is-one-third radio">
                   {% for item in addons[:2] %}
                     <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
@@ -27,6 +28,7 @@
                   {% endfor %}
                 </label>
                 <h3>Select Addons</h3>
+				<span>Addons enhance the player's experience and make your server unique by adding new features.</span>
                 <div class="addons column is-one-third">
                   {% for item in addons[2:] %}
                     <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
@@ -50,8 +52,13 @@
               </form>
             </div>
             <div class="column content">
-              <h2 id="textboxTitle">Select your addons!</h2>
-              <div id="textbox"></div>
+              <h2 id="textboxTitle">Start crafting your BentoBox!</h2>
+              <div id="textbox">
+				BentoBox is a plugin that does nothing on its own, but once you add Gamemodes and Addons to it, it becomes an incredible playground for your players, with countless possible combinations that will allow you to highly customize your server.
+				<br>
+				<br>
+				Crafting your own BentoBox is the first step to join a world of never-ending possibilities of games and fun.
+			  </div>
             </div>
         </div>
       </div>
