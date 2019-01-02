@@ -12,12 +12,14 @@ URL_MODULES = "https://ci.codemc.org/job/BentoBoxWorld/api/json"
 URL_GET_MODULE = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/api/json"
 URL_ARTIFACT = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/artifact/target/{filename}"
 
+# bentobox static addon list
+BENTOBOX_ADDONS = ["BSkyBlock", "AcidIsland", "Challanges", "Level", "addon-welcomewarpsigns", "addon-invSwitcher", "addon-limits"]
+
 CACHE_FILE_SECONDS = 60*5
 
 @app.route('/')
 def index():
-  addon_names = get_addons()
-  return render_template('index.html', addons=addon_names)
+  return render_template('index.html', addons=get_valid_addons())
 
 @app.route('/create-jar/')
 def create_jar():
@@ -72,12 +74,12 @@ def buildZip(includingJars):
   resp.release_conn()
   zf.write("setup_instructions.txt")
 
-
-def get_addons():
+def get_valid_addons():
   r = requests.get(URL_MODULES)
   obj = r.json()
   addon_names = []
   for job in obj["jobs"]:
-    if job["name"].startswith("addon") and job["color"] != "red":
+    if job["name"] in BENTOBOX_ADDONS and job["color"] != "red":
+      app.logger.debug("job for %s failed", job["name"])
       addon_names.append(job["name"])
   return addon_names
