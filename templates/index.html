@@ -16,24 +16,24 @@
             <h1>BentoBox</h1>
             <form id="form" action="/create-jar/" method="get">
                 <h3>Select Gamemodes</h3>
-				<span>Gamemodes bring in original games to your server.</span>
+                <span>Gamemodes bring in original games to your server.</span>
                 <label class="column is-one-third radio">
                   {% for item in addons[:2] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
+                    <label onmouseover="showDescription(this)" data-title="{{ item | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
                       <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item }}">
-                      {{ item.split("-")[1] | title}}
+                      {{ item | title}}
                       <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
                     </label>
                     <br>
                   {% endfor %}
                 </label>
                 <h3>Select Addons</h3>
-				<span>Addons enhance the player's experience and make your server unique by adding new features.</span>
+				        <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
                 <div class="addons column is-one-third">
                   {% for item in addons[2:] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item.split("-")[1] | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
+                    <label onmouseover="showDescription(this)" data-title="{{ item | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
                       <input name="{{ item }}" type="checkbox">
-                      {{ item.split("-")[1] | title}}
+                      {{ item | title}}
                       <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
                     </label>
                     <br>
@@ -65,7 +65,7 @@
     </div>
     
     <footer class="foot">
-      <div class="content has-text-centered">
+      <div class="has-text-centered">
         <p>
           <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made with by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
         </p>
