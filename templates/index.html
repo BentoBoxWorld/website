@@ -9,7 +9,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
-  <body>
+  <body class="Site">
+    <main class="Site-content">
     <div class="columns is-centered">
       <div class="content column is-half-desktop">
         <div class="columns is-desktop">
@@ -64,14 +65,16 @@
         </div>
       </div>
     </div>
-    
-    <footer class="foot">
+    </main>
+      
+    <footer>
       <div class="has-text-centered">
         <p>
           <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made with by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
         </p>
       </div>
     </footer>
+
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
