@@ -1,7 +1,7 @@
 function selectedGameMode(){
     elements = document.querySelectorAll("input");
     
-    if (elements[0].checked || elements[1].checked){
+    if (elements[0].checked || elements[1].checked || elements[2].checked || elements[3].checked){
         document.getElementById("submit-button").removeAttribute('disabled');
     }else{
         document.getElementById("submit-button").setAttribute('disabled', true);
