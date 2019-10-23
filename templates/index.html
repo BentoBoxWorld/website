@@ -20,7 +20,7 @@
                 <h3>Select Gamemodes</h3>
                 <span>Gamemodes bring in original games to your server.</span>
                 <label class="column is-one-third radio">
-                  {% for item in addons[:2] %}
+                  {% for item in addons[:4] %}
                     <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
                       <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
                       {{ item.name | title}}
@@ -32,7 +32,7 @@
                 <h3>Select Addons</h3>
 				        <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
                 <div class="addons column is-one-third">
-                  {% for item in addons[2:] %}
+                  {% for item in addons[4:] %}
                     <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
                       <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
                       {{ item.name | title}}
