@@ -4,6 +4,7 @@ from flask import jsonify, make_response
 from flask import request, send_file
 import urllib3, zipfile, hashlib, os, time
 import xmltodict
+import requests_cache
 
 app = Flask(__name__)
 
@@ -12,14 +13,12 @@ URL_METADATA = "https://repo.codemc.io/repository/maven-releases/world/bentobox/
 URL_VERSION_INFO = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.pom"
 URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.jar"
 
-URL_MODULES = "https://ci.codemc.org/job/BentoBoxWorld/api/json"
-URL_GET_MODULE = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/api/json"
-URL_ARTIFACT = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/artifact/target/{filename}"
-
 # bentobox static addon list
 BENTOBOX_ADDONS = ["bskyblock", "acidisland", "challenges", "level", "magiccobblestonegenerator", "warps", "likes"]
 
 CACHE_FILE_SECONDS = 60*5
+
+requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=180)
 
 @app.route('/')
 def index():
