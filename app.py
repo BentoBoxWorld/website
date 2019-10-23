@@ -18,7 +18,7 @@ BENTOBOX_ADDONS = ["bskyblock", "acidisland", "challenges", "level", "magiccobbl
 
 CACHE_FILE_SECONDS = 60*5
 
-requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=180)
+requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=60*10)
 
 @app.route('/')
 def index():
