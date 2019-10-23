@@ -16,9 +16,9 @@ URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bento
 # bentobox static addon list
 BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "magiccobblestonegenerator", "warps", "likes", "biomes", "voidportals", "IslandFly"]
 
-CACHE_FILE_SECONDS = 60*5
+CACHE_FILE_SECONDS = 60*10
 
-requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=60*10)
+requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE_FILE_SECONDS)
 
 @app.route('/')
 def index():
@@ -88,6 +88,14 @@ def get_valid_addons():
     addons.append({"name": name, "version": version, "artifactId": artifact_name})
   return addons
 
+cached_requests = dict()
+
 def get_xmldict_fromurl(url):
-  raw_content = requests.get(url).content
-  return xmltodict.parse(raw_content)
+  if url in cached_requests:
+    if time.time() - cached_requests[url]["timestamp"] < CACHE_FILE_SECONDS:
+      return cached_requests[url]["xml_dict"]
+    
+  raw_content = urlPoolLib.request('GET', url).data
+  xml_dict = xmltodict.parse(raw_content)
+  cached_requests[url] = {"timestamp": time.time(), "xml_dict": xml_dict}
+  return xml_dict
