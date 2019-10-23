@@ -3,17 +3,21 @@ import requests
 from flask import jsonify, make_response
 from flask import request, send_file
 import urllib3, zipfile, hashlib, os, time
-
+import xmltodict
 
 app = Flask(__name__)
 
 # some links for jenkins
+URL_METADATA = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/maven-metadata.xml"
+URL_VERSION_INFO = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.pom"
+URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.jar"
+
 URL_MODULES = "https://ci.codemc.org/job/BentoBoxWorld/api/json"
 URL_GET_MODULE = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/api/json"
 URL_ARTIFACT = "https://ci.codemc.org/job/BentoBoxWorld/job/{module}/lastSuccessfulBuild/artifact/target/{filename}"
 
 # bentobox static addon list
-BENTOBOX_ADDONS = ["BSkyBlock", "AcidIsland", "Challanges", "Level", "addon-welcomewarpsigns", "addon-invSwitcher", "addon-limits"]
+BENTOBOX_ADDONS = ["bskyblock", "acidisland", "challenges", "level", "magiccobblestonegenerator", "warps", "likes"]
 
 CACHE_FILE_SECONDS = 60*5
 
@@ -23,7 +27,7 @@ def index():
 
 @app.route('/create-jar/')
 def create_jar():
-  addons = list(map(lambda e: e, request.args))
+  addons = list(map(lambda e: {"artifactId": e.split(":")[0], "version": e.split(":")[1]}, request.args))
   
   # check if the zip is cached for this addons
   zipPath = getZipFilePath(addons)
@@ -42,15 +46,13 @@ def getDownloadLinks(modules):
   return links
 
 def getDownloadLink(module):
-    print(URL_GET_MODULE.format(module=module))
-    result = requests.get(URL_GET_MODULE.format(module=module)).json()
-    fileName = result["artifacts"][-1]["fileName"]
-    return [fileName, URL_ARTIFACT.format(module=module, filename=fileName)]
+    downloadUrl = URL_JAR_DOWNLOAD.format(module=module["artifactId"], version=module["version"])
+    return {"fileName": module["artifactId"] + "-" + module["version"] + ".jar", "url": downloadUrl}
 
 urlPoolLib = urllib3.PoolManager()
 
 def getModuleCheksum(modules):
-  return hashlib.md5("".join(modules).encode('utf-8')).hexdigest()
+  return hashlib.md5(str(modules).encode('utf-8')).hexdigest()
 
 def getZipFilePath(modules):
   return "zips/bentobox-" + getModuleCheksum(modules) + ".zip"
@@ -63,23 +65,30 @@ def buildZip(includingJars):
   zf = zipfile.ZipFile(getZipFilePath(includingJars), "w")
 
   for downloadLink in downloadLinks:
-    resp = urlPoolLib.request('GET', downloadLink[1])
-    zf.writestr("BentoBox/addons/" + downloadLink[0], resp.data)
+    resp = urlPoolLib.request('GET', downloadLink["url"])
+    zf.writestr("BentoBox/addons/" + downloadLink["fileName"], resp.data)
     resp.release_conn()
 
-  downloadLinkBentobox = getDownloadLink("BentoBox")
+  xml_dict = get_xmldict_fromurl(URL_METADATA.format(module="bentobox"))
+  version = xml_dict["metadata"]["versioning"]["release"]
 
-  resp = urlPoolLib.request('GET', downloadLinkBentobox[1])
-  zf.writestr(downloadLinkBentobox[0], resp.data)
+  downloadLinkBentobox = getDownloadLink({"artifactId": "bentobox", "version": version})
+
+  resp = urlPoolLib.request('GET', downloadLinkBentobox["url"])
+  zf.writestr(downloadLinkBentobox["fileName"], resp.data)
   resp.release_conn()
   zf.write("setup_instructions.txt")
 
 def get_valid_addons():
-  r = requests.get(URL_MODULES)
-  obj = r.json()
-  addon_names = []
-  for job in obj["jobs"]:
-    if job["name"] in BENTOBOX_ADDONS and job["color"] != "red":
-      app.logger.debug("job for %s failed", job["name"])
-      addon_names.append(job["name"])
-  return addon_names
+  addons = []
+  for artifact_name in BENTOBOX_ADDONS:
+    xml_dict = get_xmldict_fromurl(URL_METADATA.format(module=artifact_name))
+    version = xml_dict["metadata"]["versioning"]["release"]
+    xml_dict2 = get_xmldict_fromurl(URL_VERSION_INFO.format(module=artifact_name, version=version))
+    name = xml_dict2["project"]["name"]
+    addons.append({"name": name, "version": version, "artifactId": artifact_name})
+  return addons
+
+def get_xmldict_fromurl(url):
+  raw_content = requests.get(url).content
+  return xmltodict.parse(raw_content)

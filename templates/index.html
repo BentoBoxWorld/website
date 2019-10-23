@@ -19,10 +19,10 @@
                 <span>Gamemodes bring in original games to your server.</span>
                 <label class="column is-one-third radio">
                   {% for item in addons[:2] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
-                      <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item }}">
-                      {{ item | title}}
-                      <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                    <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
+                      <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
+                      {{ item.name | title}}
+                      <img src="https://img.shields.io/badge/release-{{ item.version }}-blue.svg">
                     </label>
                     <br>
                   {% endfor %}
@@ -31,10 +31,10 @@
 				        <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
                 <div class="addons column is-one-third">
                   {% for item in addons[2:] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item | title}}" data-desc="{% include 'descriptions/' + item + '.desc' ignore missing %}" class="checkbox">
-                      <input name="{{ item }}" type="checkbox">
-                      {{ item | title}}
-                      <img src="https://img.shields.io/github/release-pre/BentoBoxWorld/{{ item }}.svg">
+                    <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
+                      <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
+                      {{ item.name | title}}
+                      <img src="https://img.shields.io/badge/release-{{ item.version }}-blue.svg">
                     </label>
                     <br>
                   {% endfor %}
