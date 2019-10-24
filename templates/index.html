@@ -15,6 +15,22 @@
     <main class="Site-content">
     <div class="columns is-centered">
       <div class="content column is-half-desktop">
+      <div class="tabs is-centered">
+          <ul>
+            <li class="is-active">
+              <a>
+                <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                <span>Presets</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span class="icon is-small"><i class="fas fa-wrench" aria-hidden="true"></i></span>
+                <span>Custom</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <div class="columns is-desktop">
           <div class="column">
             <h1>BentoBox</h1>
@@ -26,7 +42,12 @@
                     <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
                       <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
                       {{ item.name | title}}
-                      <img src="https://img.shields.io/badge/release-{{ item.version }}-blue.svg">
+                      <div class="control is-right">
+                        <div class="tags has-addons">
+                          <span class="tag">Release</span>
+                            <a class="tag is-success" href="#colors">{{ item.version }}</a>
+                        </div>
+                      </div>
                     </label>
                     <br>
                   {% endfor %}
@@ -38,7 +59,12 @@
                     <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
                       <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
                       {{ item.name | title}}
-                      <img src="https://img.shields.io/badge/release-{{ item.version }}-blue.svg">
+                      <div class="control is-right">
+                        <div class="tags has-addons">
+                          <span class="tag">Release</span>
+                            <a class="tag is-success" href="#colors">{{ item.version }}</a>
+                        </div>
+                      </div>
                     </label>
                     <br>
                   {% endfor %}
@@ -46,23 +72,21 @@
                 </div>
                 <div class="control">
                   <button id="submit-button" onclick="playLoadingAnimation()" class="button is-link is-left" disabled>Download</button>
-                  <a id="githubButton" href="https://github.com/BentoBoxWorld" class="button is-right">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>GitHub</span>
-                  </a>
                 </div>
               </form>
             </div>
-            <div class="column content">
-              <h2 id="textboxTitle">Start crafting your BentoBox!</h2>
-              <div id="textbox">
-				BentoBox is a plugin that does nothing on its own, but once you add Gamemodes and Addons to it, it becomes an incredible playground for your players, with countless possible combinations that will allow you to highly customize your server.
-				<br>
-				<br>
-				Crafting your own BentoBox is the first step to join a world of never-ending possibilities of games and fun.
-			  </div>
+            <div class="column">
+              <article class="message is-info">
+                <div class="message-header">
+                  <p id="textboxTitle">Start crafting your BentoBox!</p>
+                </div>
+                <div class="message-body" id="textbox">
+                  BentoBox is a plugin that does nothing on its own, but once you add Gamemodes and Addons to it, it becomes an incredible playground for your players, with countless possible combinations that will allow you to highly customize your server.
+                  <br>
+                  <br>
+                  Crafting your own BentoBox is the first step to join a world of never-ending possibilities of games and fun.
+                </div>
+              </article>
             </div>
         </div>
       </div>
@@ -72,7 +96,7 @@
     <footer>
       <div class="has-text-centered">
         <p>
-          <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made with by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
+          <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
         </p>
       </div>
     </footer>
