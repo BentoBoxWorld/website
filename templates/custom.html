@@ -26,7 +26,7 @@
         {% for item in addons[:4] %}
           <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
             <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
-            {{ item.name | title}}
+            {{ item.name}}
             <div class="control is-right">
               <div class="tags has-addons">
                 <span class="tag">Release</span>
@@ -43,7 +43,7 @@
         {% for item in addons[4:] %}
           <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
             <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
-            {{ item.name | title}}
+            {{ item.name}}
             <div class="control is-right">
               <div class="tags has-addons">
                 <span class="tag">Release</span>
