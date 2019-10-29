@@ -14,7 +14,7 @@ URL_VERSION_INFO = "https://repo.codemc.io/repository/maven-releases/world/bento
 URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.jar"
 
 # bentobox static addon list
-BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "magiccobblestonegenerator", "warps", "likes", "biomes", "voidportals", "IslandFly"]
+BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "magiccobblestonegenerator", "warps", "likes", "biomes", "voidportals", "IslandFly", "controlpanel", "dimensionaltrees"]
 
 CACHE_FILE_SECONDS = 60*10
 
@@ -22,7 +22,11 @@ requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE
 
 @app.route('/')
 def index():
-  return render_template('index.html', addons=get_valid_addons())
+  return render_template('index.html', addons=dict(map(lambda e: (e["artifactId"], e["version"]),get_valid_addons())))
+
+@app.route('/custom')
+def custom():
+  return render_template('custom.html', addons=get_valid_addons())
 
 @app.route('/create-jar/')
 def create_jar():

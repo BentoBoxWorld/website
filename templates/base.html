@@ -1,0 +1,35 @@
+<html>
+
+  <head>
+    <title>BentoBox</title>
+    <meta content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/static/media/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+
+  <body class="Site">
+    <main class="Site-content">
+        <div class="columns is-centered">
+            <div class="content column is-half-desktop">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </main>
+      
+    <footer>
+      <div class="has-text-centered">
+        <p>
+          <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
+        </p>
+      </div>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

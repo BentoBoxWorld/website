@@ -1,107 +1,58 @@
-<html>
+{% extends "base.html" %}
 
-  <head>
-    <title>BentoBox</title>
-    <meta content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/static/media/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/static/media/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  </head>
-
-  <body class="Site">
-    <main class="Site-content">
-    <div class="columns is-centered">
-      <div class="content column is-half-desktop">
-      <div class="tabs is-centered">
-          <ul>
-            <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                <span>Presets</span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span class="icon is-small"><i class="fas fa-wrench" aria-hidden="true"></i></span>
-                <span>Custom</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="columns is-desktop">
-          <div class="column">
-            <h1>BentoBox</h1>
-            <form id="form" action="/create-jar/" method="get">
-                <h3>Select Gamemodes</h3>
-                <span>Gamemodes bring in original games to your server.</span>
-                <label class="column is-one-third radio">
-                  {% for item in addons[:4] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
-                      <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
-                      {{ item.name | title}}
-                      <div class="control is-right">
-                        <div class="tags has-addons">
-                          <span class="tag">Release</span>
-                            <a class="tag is-success" href="#colors">{{ item.version }}</a>
-                        </div>
-                      </div>
-                    </label>
-                    <br>
-                  {% endfor %}
-                </label>
-                <h3>Select Addons</h3>
-				        <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
-                <div class="addons column is-one-third">
-                  {% for item in addons[4:] %}
-                    <label onmouseover="showDescription(this)" data-title="{{ item.name | title}}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
-                      <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
-                      {{ item.name | title}}
-                      <div class="control is-right">
-                        <div class="tags has-addons">
-                          <span class="tag">Release</span>
-                            <a class="tag is-success" href="#colors">{{ item.version }}</a>
-                        </div>
-                      </div>
-                    </label>
-                    <br>
-                  {% endfor %}
-                  <br>
-                </div>
-                <div class="control">
-                  <button id="submit-button" onclick="playLoadingAnimation()" class="button is-link is-left" disabled>Download</button>
-                </div>
-              </form>
-            </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
-                  <p id="textboxTitle">Start crafting your BentoBox!</p>
-                </div>
-                <div class="message-body" id="textbox">
-                  BentoBox is a plugin that does nothing on its own, but once you add Gamemodes and Addons to it, it becomes an incredible playground for your players, with countless possible combinations that will allow you to highly customize your server.
-                  <br>
-                  <br>
-                  Crafting your own BentoBox is the first step to join a world of never-ending possibilities of games and fun.
-                </div>
-              </article>
-            </div>
+{% block content %}
+<div class="tabs is-centered">
+  <ul>
+    <li class="is-active">
+      <a href="">
+        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+        <span>Presets</span>
+      </a>
+    </li>
+    <li>
+      <a href="custom">
+        <span class="icon is-small"><i class="fas fa-wrench" aria-hidden="true"></i></span>
+        <span>Custom</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="columns is-desktop">
+<div class="column">
+  <h2>Click to download a preset!</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div>
+      <div class="tile is-ancestor">
+          <a class="tile is-parent" href="/create-jar/?bskyblock:{{ addons.bskyblock }}&level:{{ addons.level }}&challenges:{{ addons.challenges }}&warps:{{ addons.warps }}&controlpanel:{{ addons.controlpanel }}&dimensionaltrees:{{ addons.dimensionaltrees }}&biomes:{{ addons.biomes }}&">
+            <article class="tile is-child box notification is-info">
+              <p class="title">Classic Skyblock</p>
+              <p class="subtitle">With some content</p>
+              <div class="content notification is-info"">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+              </div>
+            </article>
+          </a>
+          <a class="tile is-parent" href="/create-jar/?acidisland:{{ addons.acidisland }}&level:{{ addons.level }}&challenges:{{ addons.challenges }}&warps:{{ addons.warps }}&controlpanel:{{ addons.controlpanel }}&dimensionaltrees:{{ addons.dimensionaltrees }}&biomes:{{ addons.biomes }}&">
+            <article class="tile is-child box notification is-success">
+              <p class="title">Classic AcidIsland</p>
+              <p class="subtitle">With some content</p>
+              <div class="content notification is-success">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+              </div>
+            </article>
+          </a>
+          <div class="tile is-parent">
+            <article class="tile is-child box">
+              <p class="title">Experimental</p>
+              <p class="subtitle">With some content</p>
+              <div class="content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+              </div>
+            </article>
+          </div>    
         </div>
       </div>
-    </div>
-    </main>
-      
-    <footer>
-      <div class="has-text-centered">
-        <p>
-          <strong>BentoBox</strong> by <a href="https://github.com/tastybento">tastybento</a> and <a href="https://github.com/Poslovitch">Poslovitch</a>. The source code is licensed under the Eclipse Public License 2.0. Webtool made by <a href="https://github.com/mastercake10">MasterCake</a>. Have a look at <a href="https://github.com/BentoBoxWorld/website">its source code</a>.
-        </p>
-      </div>
-    </footer>
-
-
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-  </body>
-</html>
+  </div>
+</div>
+</div>
+{% endblock %}

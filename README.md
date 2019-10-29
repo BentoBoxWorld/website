@@ -5,7 +5,7 @@ Webtool for BentoBox that allows users to create a ready to use .zip file with a
 
 ### Deployment
 1. Install Flask
-2. pip install requirements.txt
+2. pip install -r requirements.txt
 3. export FLASK_APP = app.py
 4. export FLASK_DEBUG = true (for debug)
 5. flask run
