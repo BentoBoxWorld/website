@@ -5,6 +5,7 @@ from flask import request, send_file
 import urllib3, zipfile, hashlib, os, time
 import xmltodict
 import requests_cache
+import statsd
 
 app = Flask(__name__)
 
@@ -20,6 +21,8 @@ CACHE_FILE_SECONDS = 60*10
 
 requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE_FILE_SECONDS)
 
+c = statsd.StatsClient('localhost', 8125)
+
 @app.route('/')
 def index():
   return render_template('index.html', addons=dict(map(lambda e: (e["artifactId"], e["version"]),get_valid_addons())))
@@ -32,6 +35,9 @@ def custom():
 def create_jar():
   addons = list(map(lambda e: {"artifactId": e.split(":")[0], "version": e.split(":")[1]}, request.args))
   
+  for addon in addons:
+    c.incr('addon.' + addon["artifactId"])
+
   # check if the zip is cached for this addons
   zipPath = getZipFilePath(addons)
 
