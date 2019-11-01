@@ -27,12 +27,16 @@
           <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
             <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
             {{ item.name }}
-            <div class="control is-right">
-              <div class="tags has-addons">
-                <span class="tag">Release</span>
-                  <a class="tag is-success" href="#colors">{{ item.version }}</a>
+            <div class="is-right field is-grouped is-grouped-multiline">
+                <div class="tags has-addons control">
+                  <span class="tag">v</span>
+                  <span class="tag is-success">{{ item.version }}</span>
+                </div>
+                <div class="tags has-addons control">
+                    <span class="tag icon"><i class="fas fa-download" aria-hidden="true"></i></span>
+                    <span class="tag bd-mini-tag is-info">{{ item.downloads }}</span>
+                </div>
               </div>
-            </div>
           </label>
           <br>
         {% endfor %}
@@ -44,10 +48,14 @@
           <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
             <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
             {{ item.name }}
-            <div class="control is-right">
-              <div class="tags has-addons">
-                <span class="tag">Release</span>
-                  <a class="tag is-success" href="#colors">{{ item.version }}</a>
+            <div class="is-right field is-grouped is-grouped-multiline">
+              <div class="tags has-addons control">
+                <span class="tag">v</span>
+                <span class="tag is-success">{{ item.version }}</span>
+              </div>
+              <div class="tags has-addons control">
+                  <span class="tag icon"><i class="fas fa-download" aria-hidden="true"></i></span>
+                  <span class="tag bd-mini-tag is-info">{{ item.downloads }}</span>
               </div>
             </div>
           </label>

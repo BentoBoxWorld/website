@@ -6,6 +6,8 @@ import urllib3, zipfile, hashlib, os, time
 import xmltodict
 import requests_cache
 import statsd
+import json
+import os.path
 
 app = Flask(__name__)
 
@@ -21,11 +23,11 @@ CACHE_FILE_SECONDS = 60*10
 
 requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE_FILE_SECONDS)
 
-c = statsd.StatsClient('localhost', 8125)
+download_stats = json.loads(open('stats.json', 'r').read()) if os.path.exists('stats.json') else {}
 
 @app.route('/')
 def index():
-  return render_template('index.html', addons=dict(map(lambda e: (e["artifactId"], e["version"]),get_valid_addons())))
+  return render_template('index.html', addons=dict(map(lambda e: (e["artifactId"], e["version"]), get_valid_addons())))
 
 @app.route('/custom')
 def custom():
@@ -36,7 +38,7 @@ def create_jar():
   addons = list(map(lambda e: {"artifactId": e.split(":")[0], "version": e.split(":")[1]}, request.args))
   
   for addon in addons:
-    c.incr('addon.' + addon["artifactId"])
+    increment_stats(addon["artifactId"])
 
   # check if the zip is cached for this addons
   zipPath = getZipFilePath(addons)
@@ -95,7 +97,7 @@ def get_valid_addons():
     version = xml_dict["metadata"]["versioning"]["release"]
     xml_dict2 = get_xmldict_fromurl(URL_VERSION_INFO.format(module=artifact_name, version=version))
     name = xml_dict2["project"]["name"]
-    addons.append({"name": name, "version": version, "artifactId": artifact_name})
+    addons.append({"name": name, "version": version, "artifactId": artifact_name, "downloads": format(get_stats(artifact_name))})
   return addons
 
 cached_requests = dict()
@@ -109,3 +111,19 @@ def get_xmldict_fromurl(url):
   xml_dict = xmltodict.parse(raw_content)
   cached_requests[url] = {"timestamp": time.time(), "xml_dict": xml_dict}
   return xml_dict
+
+def get_stats(key):
+  if key in download_stats:
+    return download_stats[key]
+  return 0
+def increment_stats(key):
+  if key in download_stats:
+    download_stats[key] += 1
+  else:
+    download_stats[key] = 1
+  open("stats.json", "w").write(json.dumps(download_stats))
+
+def format(number):
+  if number > 1000:
+    return str(round(number / 1000, 1)) + "k"
+  return number
