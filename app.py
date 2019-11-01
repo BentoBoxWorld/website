@@ -5,7 +5,6 @@ from flask import request, send_file
 import urllib3, zipfile, hashlib, os, time
 import xmltodict
 import requests_cache
-import statsd
 import pymongo
 import os
 
