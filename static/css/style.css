@@ -23,6 +23,9 @@ label {
   width: 400px;
   padding-bottom: 5px;
 }
+.control {
+  margin-bottom: 0.5rem !important;
+}
 .Site {
   display: flex;
   min-height: 100vh;

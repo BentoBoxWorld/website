@@ -124,6 +124,8 @@ def increment_stats(key):
   open("stats.json", "w").write(json.dumps(download_stats))
 
 def format(number):
-  if number > 1000:
+  if number > 1000 and number < 10000:
     return str(round(number / 1000, 1)) + "k"
+  elif number >= 10000:
+    return str(round(number / 1000, 0)) + "k"
   return number
