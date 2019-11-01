@@ -6,8 +6,8 @@ import urllib3, zipfile, hashlib, os, time
 import xmltodict
 import requests_cache
 import statsd
-import json
-import os.path
+import pymongo
+import os
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ CACHE_FILE_SECONDS = 60*10
 
 requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE_FILE_SECONDS)
 
-download_stats = json.loads(open('stats.json', 'r').read()) if os.path.exists('stats.json') else {}
+mongodb = pymongo.MongoClient(os.environ["MONGODB_URI"])["bmj0hz1bfryjijw"]
 
 @app.route('/')
 def index():
@@ -112,16 +112,21 @@ def get_xmldict_fromurl(url):
   cached_requests[url] = {"timestamp": time.time(), "xml_dict": xml_dict}
   return xml_dict
 
+
+stats_col = mongodb["stats"]
+
 def get_stats(key):
-  if key in download_stats:
-    return download_stats[key]
+  document = stats_col.find_one({"_id": key})
+  if document:
+    return document["val"]
   return 0
+
 def increment_stats(key):
-  if key in download_stats:
-    download_stats[key] += 1
+  document = stats_col.find_one({"_id": key})
+  if document:
+    stats_col.update_one({"_id": key}, {"$inc": {"val": 1}})
   else:
-    download_stats[key] = 1
-  open("stats.json", "w").write(json.dumps(download_stats))
+    stats_col.insert_one({"_id": key, "val": 1})
 
 def format(number):
   if number > 1000 and number < 10000:
