@@ -16,7 +16,7 @@ URL_VERSION_INFO = "https://repo.codemc.io/repository/maven-releases/world/bento
 URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.jar"
 
 # bentobox static addon list
-BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "magiccobblestonegenerator", "warps", "likes", "biomes", "voidportals", "IslandFly", "controlpanel", "dimensionaltrees"]
+BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "warps", "limits", "likes", "biomes", "magiccobblestonegenerator", "voidportals", "IslandFly", "controlpanel", "dimensionaltrees", "twerkingfortrees", "greenhouses", "cauldronwitchery"]
 
 CACHE_FILE_SECONDS = 60*10
 
