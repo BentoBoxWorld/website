@@ -93,10 +93,11 @@ def get_valid_addons():
   addons = []
   for artifact_name in BENTOBOX_ADDONS:
     xml_dict = get_xmldict_fromurl(URL_METADATA.format(module=artifact_name))
-    version = xml_dict["metadata"]["versioning"]["release"]
-    xml_dict2 = get_xmldict_fromurl(URL_VERSION_INFO.format(module=artifact_name, version=version))
-    name = xml_dict2["project"]["name"]
-    addons.append({"name": name, "version": version, "artifactId": artifact_name, "downloads": format(get_stats(artifact_name))})
+    if xml_dict != None:
+      version = xml_dict["metadata"]["versioning"]["release"]
+      xml_dict_module_info = get_xmldict_fromurl(URL_VERSION_INFO.format(module=artifact_name, version=version))
+      name = xml_dict_module_info["project"]["name"]
+      addons.append({"name": name, "version": version, "artifactId": artifact_name, "downloads": format(get_stats(artifact_name))})
   return addons
 
 cached_requests = dict()
@@ -105,11 +106,15 @@ def get_xmldict_fromurl(url):
   if url in cached_requests:
     if time.time() - cached_requests[url]["timestamp"] < CACHE_FILE_SECONDS:
       return cached_requests[url]["xml_dict"]
-    
-  raw_content = urlPoolLib.request('GET', url).data
-  xml_dict = xmltodict.parse(raw_content)
-  cached_requests[url] = {"timestamp": time.time(), "xml_dict": xml_dict}
-  return xml_dict
+  
+  response = urlPoolLib.request('GET', url)
+  if response.status == 200:
+    raw_content = response.data
+    xml_dict = xmltodict.parse(raw_content)
+    cached_requests[url] = {"timestamp": time.time(), "xml_dict": xml_dict}
+    return xml_dict
+  else:
+    return None
 
 
 stats_col = mongodb["stats"]
