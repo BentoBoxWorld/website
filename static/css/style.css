@@ -11,6 +11,8 @@ body {
   margin-bottom: 5%;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 3px;
+  flex: none;
+  width: 50%;
 }
 .is-right {
   float: right;
@@ -38,15 +40,25 @@ footer {
   background-color: white !important;
   padding: 50px !important;
 }
-.message{
+.message {
   height: 90%;
 }
+.tagcontainer {
+  width: 150px;
+}
+.tag-download {
+  width: 30px;
+}
+.tag-version {
+  width: 45px;
+}
 
-@media (max-width: 960px) { 
+@media (max-width: 1300px) { 
   body {
     background-image: none !important;
   }
   .content {
     background-color: azure;
+    width: 100%; 
   }
 }
