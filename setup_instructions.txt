@@ -1,4 +1,8 @@
-Thanks for downloading Bentobox!
+Thanks for downloading BentoBox!
 
-Just drop the BentoBox folder and the bentobox-x.xx.x-SNAPSHOT.jar to your plugin folder!
-Remember that the BentoBox folder contains all the addons you've just downloaded.
+Setup instructions:
+1) Extract the content of this archive.
+2) Put the BentoBox folder and the BentoBox-x.xx.x.jar in your plugins folder.
+3) Launch the server!
+
+The BentoBox folder contains all the addons you've just downloaded.
