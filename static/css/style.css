@@ -52,6 +52,9 @@ footer {
 .tag-version {
   width: 45px;
 }
+.tile {
+  margin: 30px;
+}
 
 @media (max-width: 1300px) { 
   body {
