@@ -1,7 +1,7 @@
 # Webtool
 Webtool for BentoBox that allows users to create a ready to use .zip file with all desired addons in it.
 
-[http://bentobox-tool.herokuapp.com]
+[https://download.bentobox.world]
 
 ### Deployment
 1. Install Flask
