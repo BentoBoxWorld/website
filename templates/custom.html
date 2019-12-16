@@ -25,7 +25,7 @@
       <label class="column is-one-third radio">
         {% for item in addons[:4] %}
           <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
-            <input class="gamemode" onclick="selectedGameMode()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
+            <input class="gamemode" onclick="selectedModule()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
             {{ item.name }}
             <div class="tagcontainer is-right field is-grouped is-grouped-multiline">
                 <div class="tags has-addons control is-expanded">
@@ -46,7 +46,7 @@
       <div class="addons column is-one-third">
         {% for item in addons[4:] %}
           <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
-            <input name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
+            <input onclick="selectedModule()" name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
             {{ item.name }}
             <div class="tagcontainer is-right field is-grouped is-grouped-multiline">
               <div class="tags has-addons control is-expanded">
