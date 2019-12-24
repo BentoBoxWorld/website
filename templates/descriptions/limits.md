@@ -1,4 +1,3 @@
 Limit how many blocks and entities your players can have on their islands.
-<br>
-<br>
-Created and maintained by tastybento.
+
+Created and maintained by [tastybento](https://github.com/tastybento).
