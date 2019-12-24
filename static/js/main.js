@@ -28,6 +28,7 @@ function playLoadingAnimation(){
 }
 
 var textBoxTitle = document.getElementById("textboxTitle");
+var descriptionContainer = document.getElementById("description-container");
 
 function showDescription(addonName){
     var messageBodies = document.getElementsByClassName("message-body");
@@ -36,4 +37,6 @@ function showDescription(addonName){
     }
     document.getElementById("description-" + addonName).style.display = "block";
     textBoxTitle.innerHTML = addonName;
+
+    descriptionContainer.style.top = document.body.scrollTop / 2;
 }
