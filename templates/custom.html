@@ -24,7 +24,7 @@
       <span>Gamemodes bring in original games to your server.</span>
       <label class="column is-one-third radio">
         {% for item in addons[:4] %}
-          <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
+        <label class="checkbox" onMouseOver="showDescription('{{ item.name }}')">
             <input class="gamemode" onclick="selectedModule()" type="checkbox" name="{{ item.artifactId }}:{{ item.version }}">
             {{ item.name }}
             <div class="tagcontainer is-right field is-grouped is-grouped-multiline">
@@ -45,7 +45,7 @@
       <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
       <div class="addons column is-one-third">
         {% for item in addons[4:] %}
-          <label onmouseover="showDescription(this)" data-title="{{ item.name }}" data-desc="{% include 'descriptions/' + item.artifactId + '.desc' ignore missing %}" class="checkbox">
+          <label class="checkbox" onMouseOver="showDescription('{{ item.name }}')">
             <input onclick="selectedModule()" name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
             {{ item.name }}
             <div class="tagcontainer is-right field is-grouped is-grouped-multiline">
@@ -73,12 +73,14 @@
       <div class="message-header">
         <p id="textboxTitle">Start crafting your BentoBox!</p>
       </div>
-      <div class="message-body" id="textbox">
-        BentoBox is a plugin that does nothing on its own, but once you add Gamemodes and Addons to it, it becomes an incredible playground for your players, with countless possible combinations that will allow you to highly customize your server.
-        <br>
-        <br>
-        Crafting your own BentoBox is the first step to join a world of never-ending possibilities of games and fun.
+      <div class="message-body">
+          {% filter markdown %}{% include 'descriptions/start.md' ignore missing %}{% endfilter %}
       </div>
+      {% for item in addons %}
+      <div class="message-body" style="display: none" id="description-{{ item.name }}">
+        {% filter markdown %}{% include 'descriptions/' + item.artifactId + '.md' ignore missing %}{% endfilter %}
+      </div>
+      {% endfor %}
     </article>
   </div>
 </div>

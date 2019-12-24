@@ -7,8 +7,10 @@ import xmltodict
 import requests_cache
 import pymongo
 import os
+from flaskext.markdown import Markdown
 
 app = Flask(__name__)
+Markdown(app)
 
 # some links for jenkins
 URL_METADATA = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/maven-metadata.xml"

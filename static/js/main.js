@@ -27,10 +27,13 @@ function playLoadingAnimation(){
       }, 100);
 }
 
-var textBox = document.getElementById("textbox");
 var textBoxTitle = document.getElementById("textboxTitle");
 
-function showDescription(labelEle){
-    textBoxTitle.innerHTML = labelEle.getAttribute("data-title");
-    textBox.innerHTML = labelEle.getAttribute("data-desc");
+function showDescription(addonName){
+    var messageBodies = document.getElementsByClassName("message-body");
+    for(var i = 0; i < messageBodies.length; i++){
+        messageBodies[i].style.display = "none";
+    }
+    document.getElementById("description-" + addonName).style.display = "block";
+    textBoxTitle.innerHTML = addonName;
 }
