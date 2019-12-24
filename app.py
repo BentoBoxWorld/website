@@ -1,13 +1,9 @@
-from flask import Flask, render_template
-import requests
-from flask import jsonify, make_response
-from flask import request, send_file
-import urllib3, zipfile, hashlib, os, time
-import xmltodict
-import requests_cache
-import pymongo
-import os
+from flask import Flask, render_template, jsonify, make_response, request, send_file
 from flaskext.markdown import Markdown
+import zipfile, hashlib, os, time
+import xmltodict, json
+import urllib3, requests, requests_cache
+import pymongo
 
 app = Flask(__name__)
 Markdown(app)
