@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, make_response, request, send_file
 from flaskext.markdown import Markdown
 import zipfile, hashlib, os, time
-import xmltodict, json
+import xmltodict
 import urllib3, requests, requests_cache
 import pymongo
 
@@ -14,7 +14,7 @@ URL_VERSION_INFO = "https://repo.codemc.io/repository/maven-releases/world/bento
 URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bentobox/{module}/{version}/{module}-{version}.jar"
 
 # bentobox static addon list
-BENTOBOX_ADDONS = ["bskyblock", "acidisland", "caveblock", "skygrid", "challenges", "level", "warps", "limits", "likes", "biomes", "magiccobblestonegenerator", "voidportals", "IslandFly", "controlpanel", "dimensionaltrees", "twerkingfortrees", "Greenhouses", "cauldronwitchery", "border", "chat"]
+BENTOBOX_ADDONS = open('addons.txt', 'r').read().splitlines()
 
 CACHE_FILE_SECONDS = 60*10
 
