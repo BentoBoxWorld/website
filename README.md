@@ -1,13 +1,14 @@
 # Webtool
 Webtool for BentoBox that allows users to create a ready to use .zip file with all desired addons in it.
 
-[https://download.bentobox.world]
+The webtool fetches all addons from the official bentobox repository, which is located at [codemc](https://repo.codemc.io/service/rest/repository/browse/maven-releases/world/bentobox/).
 
-### Deployment
-1. Install Flask
-2. pip install -r requirements.txt
-3. export FLASK_APP = app.py
-4. export FLASK_DEBUG = true (for debug)
-5. flask run
+[download.bentobox.world](https://download.bentobox.world)
 
-However for production, I highly recommend using gunicorn or just running it on heroku.
+## Adding an addon from codemc
+You might add new addons from codemc by creating a pull request for the following changes:
+
+1. Add your addon name to the bottom of the `addons.txt` file
+   - Keep in mind that addon names are **case-sensitive**, so it must match the parent folder name on [codemc](https://repo.codemc.io/service/rest/repository/browse/maven-releases/world/bentobox/).
+2. Create a markdown description file using the same name as above in `/descriptions` with `.md` as file extension.
+
