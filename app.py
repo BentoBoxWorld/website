@@ -132,7 +132,7 @@ def increment_stats(key):
 
 def format(number):
   if number > 1000 and number < 10000:
-    return str(round(number / 1000, 1)) + "k"
+    return str(round(number / 1000.0, 1)) + "k"
   elif number >= 10000:
-    return str(round(number / 1000, 0)) + "k"
+    return str(round(number / 1000.0, 0)) + "k"
   return number
