@@ -1,1 +1,3 @@
-WelcomeWarpSigns is an add-on for BentoBox, an expandable Minecraft Bukkit plugin for island-type games like ASkyBlock or AcidIsland.
+**Warps** lets your players create Warps so that other players can visit their islands.
+
+Created and maintained by [tastybento](https://github.com/tastybento).

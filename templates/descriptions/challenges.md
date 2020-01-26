@@ -1,1 +1,3 @@
-Add-on for BentoBox to provide challenges for BSkyBlock and AcidIsland. This add-on will work for both game modes.
+**Challenges** lets you create Challenges for your **players to complete!**
+
+Created and maintained by [BONNe](https://github.com/BONNe).

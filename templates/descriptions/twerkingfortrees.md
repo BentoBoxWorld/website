@@ -1,4 +1,4 @@
-Let your players **twerk** that cubic booty to get trees **growing faster**!
+**TwerkingForTrees** lets your players **twerk** that cubic booty to get trees **growing faster**!
 
 Inspired by the modded Skyblock experience.
 

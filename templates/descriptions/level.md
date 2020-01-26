@@ -1,1 +1,3 @@
-Add-on for BentoBox to calculate island levels for BSkyBlock and AcidIsland. This add-on will work for both game modes.
+**Level** creates a competitive atmosphere by making your players try to **have the highest island level**.
+
+Created and maintained by [tastybento](https://github.com/tastybento).
