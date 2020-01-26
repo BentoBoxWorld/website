@@ -10,5 +10,5 @@ You might add new addons from codemc by creating a pull request for the followin
 
 1. Add your addon name to the bottom of the `addons.txt` file
    - Keep in mind that addon names are **case-sensitive**, so it must match the parent folder name on [codemc](https://repo.codemc.io/service/rest/repository/browse/maven-releases/world/bentobox/).
-2. Create a markdown description file using the same name as above in `/teplates/descriptions/` with `.md` as file extension.
+2. Create a markdown description file using the same name as above in `/templates/descriptions/` with `.md` as file extension.
 
