@@ -38,5 +38,5 @@ function showDescription(addonName){
     document.getElementById("description-" + addonName).style.display = "block";
     textBoxTitle.innerHTML = addonName;
 
-    descriptionContainer.style.top = document.body.scrollTop / 2;
+    descriptionContainer.style.top = 100;
 }
