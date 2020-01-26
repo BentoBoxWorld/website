@@ -1,1 +1,3 @@
-Add-on for BentoBox to allow players of to fly on their island. This add-on will work in all game modes.
+**IslandFly** lets your players **fly within their islands**!
+
+Created and maintained by [tastybento](https://github.com/tastybento).

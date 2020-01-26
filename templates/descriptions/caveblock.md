@@ -1,7 +1,7 @@
-CaveBlock is a survival game where players try to **survive underground**.
+**CaveBlock** is a **survival game** where players try to survive **underground**.
 
-An ode to the dwarf's heart in the depths of each person.
+*An ode to the dwarf's heart in the depths of each person.*
 
-Inspired by the lately famous StoneBlock modpack.
+Based on an original idea by the **StoneBlock modpack**.
 
-Created and maintained by [BONNe](https://github.com/bonne).
+Created and maintained by [BONNe](https://github.com/BONNe).

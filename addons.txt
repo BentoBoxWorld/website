@@ -18,3 +18,4 @@ Greenhouses
 cauldronwitchery
 border
 chat
+extramobs

@@ -1,5 +1,3 @@
-BSkyBlock is a survival game where the player **starts with an island** in the **sky**.
-
-BSkyBlock (Better SkyBlock) represents a turning point on ASkyBlock's history : Tastybento and Poslovitch thought and designed together this complete rewrite in order to provide a whole new way to play Skyblock.
+BSkyBlock is a **survival game** where players try to survive **on an island in the sky**.
 
 Created and maintained by [tastybento](https://github.com/tastybento).

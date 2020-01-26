@@ -1,1 +1,5 @@
-Border, is an add-on that add a border showing the limit of the user Island.
+**Border** displays a **world border** around your players' islands.
+
+**WARNING: it requires [WorldBorderAPI](yannicklamprecht/WorldBorderAPI/releases).**
+
+Created and maintained by [tastybento](https://github.com/tastybento).

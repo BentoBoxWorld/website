@@ -1,4 +1,4 @@
-Let your players **create biome greenhouses** on their islands.
+**Greenhouses** lets your players **create biome greenhouses** on their islands.
 
 Interesting variation to the Biomes addon.
 
