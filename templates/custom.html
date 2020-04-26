@@ -44,7 +44,7 @@
       <h3>Select Addons</h3>
       <span>Addons enhance the player's experience and make your server unique by adding new features.</span>
       <div class="addons column is-one-third">
-        {% for item in addons[4:] %}
+        {% for item in addons[5:] %}
           <label class="checkbox" onMouseOver="showDescription('{{ item.name }}')">
             <input onclick="selectedModule()" name="{{ item.artifactId }}:{{ item.version }}" type="checkbox">
             {{ item.name }}
