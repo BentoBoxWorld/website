@@ -20,4 +20,4 @@ cauldronwitchery
 border
 chat
 extramobs
-InvSwitcher
+invswitcher
