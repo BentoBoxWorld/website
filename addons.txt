@@ -22,3 +22,4 @@ chat
 extramobs
 invswitcher
 bank
+visit
