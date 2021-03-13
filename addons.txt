@@ -3,6 +3,7 @@ aoneblock
 acidisland
 caveblock
 skygrid
+boxed
 challenges
 level
 warps
@@ -20,6 +21,7 @@ cauldronwitchery
 border
 chat
 extramobs
-invswitcher
 bank
 visit
+checkmeout
+InvSwitcher

@@ -1,7 +1,16 @@
-**InvSwitcher** is simple world inventory switcher.
+**InvSwitcher** is per-world switcher.
 
-Switches inventories, heath, food and experience points.
-There is no config and it applies to all worlds. Use other
-plugins if you want configuration options. :-)
+World inventory switcher add-on for BentoBox. This add-on will work for any game modes.
+
+The following can be switched per-world:
+
+* Inventory & armor
+* Advancements
+* Food level
+* Experience
+* Health
+* Enderchest contents
+
+Use the config to set what you want to be switched.
 
 Created and maintained by [tastybento](https://github.com/tastybento).
