@@ -2,3 +2,5 @@ __pycache__/
 zips/
 *.sqlite
 *.json
+/.DS_Store
+/.project

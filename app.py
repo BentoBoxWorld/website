@@ -16,7 +16,7 @@ URL_JAR_DOWNLOAD = "https://repo.codemc.io/repository/maven-releases/world/bento
 # bentobox static addon list
 BENTOBOX_ADDONS = open('addons.txt', 'r').read().splitlines()
 
-CACHE_FILE_SECONDS = 60*10
+CACHE_FILE_SECONDS = 60*60
 
 requests_cache.install_cache('nexus_cache', backend='sqlite', expire_after=CACHE_FILE_SECONDS)
 
